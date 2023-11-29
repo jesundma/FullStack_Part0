@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    note right of browser: Notes HTML page contains Form, which defines action when Save button is pressed
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    note right of server: text/html saved to ./notes array in server, not in database
+    server->>browser: HTTP status code 302, URL redirect, server request browser to do new GET request to header's LOCATION (./notes)
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    server->>browser: HTML Document (with link (CSS) and script (JavaScript))
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    server->>browser: CSS style sheet
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    server->>browser: JavaScript for fetching and rendering data 
+    note right of browser: JavaScript executed in browser
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    server->>browser: JSON (text and date)
+    deactivate server
+    
