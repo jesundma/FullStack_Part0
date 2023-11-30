@@ -1,0 +1,8 @@
+sequenceDiagram
+    participant browser
+    participant server
+    note right of browser: HTML document has form-tag for note, data is sent to server by JavaScript (spa.js)
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    note left of server: header tells content-type json, note added to array on memory (spa.js / notes)
+    activate server
+    note right of browser: server responds only with 201 status (created), do not redirect, spa.js rerenders the page with new note added
