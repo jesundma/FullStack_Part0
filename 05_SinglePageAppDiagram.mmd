@@ -1,0 +1,18 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
+    activate server
+    server->>browser: HTML Document (with link: CSS stylesheet and script: JavaScript)
+    note right of browser: link and script requests activated by browser
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    server->>browser: CSS stylesheet
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+    server->>browser: JavaScript for fetching and rendering data
+    note right of browser: JavaScript, spa.js executed in browser
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    server->>browser: JSON file (content, date)
+    note right of browser: JavaScript spa.js rendering JSON file (data.json)
+    deactivate server
+    
